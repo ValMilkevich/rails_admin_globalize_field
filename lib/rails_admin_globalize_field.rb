@@ -19,6 +19,14 @@ module RailsAdmin
             :form_globalize_tabs
           end
 
+          register_instance_option :available_locales do
+            []
+          end
+
+          register_instance_option :current_locale do
+            I18n.locale
+          end
+
           def method_name
             "#{super}_attributes".to_sym
           end
@@ -30,13 +38,6 @@ module RailsAdmin
           # Reader for validation errors of the bound object
           def errors
             bindings[:object].errors[name]
-          end
-
-          def available_locales
-            I18n.available_locales
-          end
-          def current_locale
-            I18n.locale
           end
 
           # Returns array of Translation objects.
